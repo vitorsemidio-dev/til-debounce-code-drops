@@ -8,12 +8,16 @@ function debounceEvent(value) {
   let time = null;
   clearTimeout(time);
 
-  time = setTimeout(() => {
-    filterUsers(value).then(users => console.log(users));
-  }, 1000);
+  // clojure
+  return function() {
+    time = setTimeout(() => {
+      filterUsers(value).then(users => console.log(users));
+    }, 1000);
+  }
+
 }
 function handleKeyUp(event) {
-  debounceEvent(event.target.value);  
+  debounceEvent(event.target.value)();
 }
 
 document.querySelector('input').addEventListener('keyup', handleKeyUp);
