@@ -7,11 +7,11 @@ const filterUsers = async (name) =>
 function debounceEvent() {
   let time = null;
   
-  return function(fn) {
+  return function(fn, wait = 1000) {
     clearTimeout(time);
     time = setTimeout(() => {
       fn();
-    }, 1000);
+    }, wait);
   }
 
 }
@@ -22,7 +22,7 @@ function handleKeyUp(event) {
   debounce(() => {
     filterUsers(event.target.value)
     .then(users => console.log(users.map(user => user.name)));
-  });
+  }, 3000);
 }
 
 document.querySelector('input').addEventListener('keyup', handleKeyUp);
