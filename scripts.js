@@ -7,20 +7,22 @@ const filterUsers = async (name) =>
 function debounceEvent() {
   let time = null;
   
-  // clojure
-  return function(value) {
+  return function(fn) {
     clearTimeout(time);
     time = setTimeout(() => {
-      filterUsers(value).then(users => console.log(users.map(user => user.name)));
+      fn();
     }, 1000);
   }
 
 }
 
-const debounce = debounceEvent(); // clojure
+const debounce = debounceEvent();
 
 function handleKeyUp(event) {
-  debounce(event.target.value); // chamando a função
+  debounce(() => {
+    filterUsers(event.target.value)
+    .then(users => console.log(users.map(user => user.name)));
+  });
 }
 
 document.querySelector('input').addEventListener('keyup', handleKeyUp);
