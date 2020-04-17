@@ -3,9 +3,9 @@ const jsonplaceholder = 'https://jsonplaceholder.typicode.com/users';
 const filterUsers = async (name) => 
   fetch(`${jsonplaceholder}?name_like=${name}`).then(res => res.json());
 
-let time = null;
-
+  
 function debounceEvent(value) {
+  let time = null;
   clearTimeout(time);
 
   time = setTimeout(() => {
