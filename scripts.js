@@ -4,20 +4,23 @@ const filterUsers = async (name) =>
   fetch(`${jsonplaceholder}?name_like=${name}`).then(res => res.json());
 
   
-function debounceEvent(value) {
+function debounceEvent() {
   let time = null;
-  clearTimeout(time);
-
+  
   // clojure
-  return function() {
+  return function(value) {
+    clearTimeout(time);
     time = setTimeout(() => {
-      filterUsers(value).then(users => console.log(users));
+      filterUsers(value).then(users => console.log(users.map(user => user.name)));
     }, 1000);
   }
 
 }
+
+const debounce = debounceEvent(); // clojure
+
 function handleKeyUp(event) {
-  debounceEvent(event.target.value)();
+  debounce(event.target.value); // chamando a função
 }
 
 document.querySelector('input').addEventListener('keyup', handleKeyUp);
