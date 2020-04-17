@@ -4,14 +4,16 @@ const filterUsers = async (name) =>
   fetch(`${jsonplaceholder}?name_like=${name}`).then(res => res.json());
 
 let time = null;
-function handleKeyUp(event) {
 
+function debounceEvent(value) {
   clearTimeout(time);
 
   time = setTimeout(() => {
-    const nome = event.target.value;
-    filterUsers(nome).then(users => console.log(users));
-  }, 1000)
+    filterUsers(value).then(users => console.log(users));
+  }, 1000);
+}
+function handleKeyUp(event) {
+  debounceEvent(event.target.value);  
 }
 
 document.querySelector('input').addEventListener('keyup', handleKeyUp);
