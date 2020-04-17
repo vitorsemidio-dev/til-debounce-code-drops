@@ -1,3 +1,7 @@
+const jsonplaceholder = 'https://jsonplaceholder.typicode.com/users';
+
+const filterUsers = async (name) => 
+  fetch(`${jsonplaceholder}?name_like=${name}`).then(res => res.json());
 
 let time = null;
 function handleKeyUp(event) {
@@ -5,7 +9,8 @@ function handleKeyUp(event) {
   clearTimeout(time);
 
   time = setTimeout(() => {
-    console.log(event.target.value);
+    const nome = event.target.value;
+    filterUsers(nome).then(users => console.log(users));
   }, 1000)
 }
 
