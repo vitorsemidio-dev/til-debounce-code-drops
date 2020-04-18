@@ -7,19 +7,17 @@ const filterUsers = async (name) =>
 function debounceEvent(fn, wait = 1000, time) {
   console.log('run debounce');
   return function() {
-    console.log('digitei');
-    console.log(wait);
     clearTimeout(time);
     time = setTimeout(() => {
-      fn();
+      fn(arguments); // passa os arguments
+      fn.apply(this, arguments); // aplica os argments direto na função
     }, wait);
   }
 
 }
 
 function handleKeyUp(event) {
-  console.log('run');
-  console.log(event) // undefined
+  console.log(event);
   // filterUsers(event.target.value)
   // .then(users => console.log(users.map(user => user.name)));  
 }
