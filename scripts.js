@@ -4,9 +4,11 @@ const filterUsers = async (name) =>
   fetch(`${jsonplaceholder}?name_like=${name}`).then(res => res.json());
 
 
-function debounceEvent(fn, time) {
+function debounceEvent(fn, wait = 1000, time) {
   console.log('run debounce');
-  return function(wait = 1000) {
+  return function() {
+    console.log('digitei');
+    console.log(wait);
     clearTimeout(time);
     time = setTimeout(() => {
       fn();
@@ -23,4 +25,6 @@ function handleKeyUp(event) {
   // .then(users => console.log(users.map(user => user.name)));  
 }
 
-document.querySelector('input').addEventListener('keyup', debounceEvent(handleKeyUp));
+const input = document.querySelector('input')
+input.addEventListener('keyup', debounceEvent(handleKeyUp, 3000));
+input.focus();
