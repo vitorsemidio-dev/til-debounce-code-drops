@@ -4,15 +4,14 @@ const filterUsers = async (name) =>
   fetch(`${jsonplaceholder}?name_like=${name}`).then(res => res.json());
 
 
-function debounceEvent(fn, wait = 1000, time) {
-  return function() {
-    clearTimeout(time);
-    time = setTimeout(() => {
-      // fn(arguments); // passa os arguments
-      fn.apply(this, arguments); // aplica os argments direto na função
-    }, wait);
-  }
-
+/**
+ * Arrow function não possuem arguments e sim args
+ */
+const debounceEvent = (fn, wait = 1000, time) =>  (...args) => {
+  clearTimeout(time);
+  time = setTimeout(() => {
+    fn(...args);
+  }, wait);
 }
 
 function handleKeyUp(event) {
