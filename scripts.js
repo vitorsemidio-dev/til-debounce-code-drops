@@ -17,14 +17,13 @@ function debounceEvent(fn, wait = 1000, time) {
 
 }
 
-// const debounce = debounceEvent();
-
 function handleKeyUp(event) {
-  // console.log('run');
+  console.log('run');
+  console.log(event) // undefined
   // filterUsers(event.target.value)
   // .then(users => console.log(users.map(user => user.name)));  
 }
 
 const input = document.querySelector('input')
-input.addEventListener('keyup', debounceEvent(handleKeyUp, 3000));
+input.addEventListener('keyup', debounceEvent(handleKeyUp, 750));
 input.focus();
