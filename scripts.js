@@ -5,11 +5,10 @@ const filterUsers = async (name) =>
 
 
 function debounceEvent(fn, wait = 1000, time) {
-  console.log('run debounce');
   return function() {
     clearTimeout(time);
     time = setTimeout(() => {
-      fn(arguments); // passa os arguments
+      // fn(arguments); // passa os arguments
       fn.apply(this, arguments); // aplica os argments direto na função
     }, wait);
   }
@@ -17,9 +16,8 @@ function debounceEvent(fn, wait = 1000, time) {
 }
 
 function handleKeyUp(event) {
-  console.log(event);
-  // filterUsers(event.target.value)
-  // .then(users => console.log(users.map(user => user.name)));  
+  filterUsers(event.target.value)
+  .then(users => console.log(users.map(user => user.name)));  
 }
 
 const input = document.querySelector('input')
