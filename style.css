@@ -77,3 +77,18 @@ button {
   
   cursor: pointer;
 }
+
+
+#list {
+  padding: 24px;
+  font-size: 18px;
+  color: #fff;
+  list-style-type: none;
+}
+
+.list-item {
+  padding: 16px;
+  margin: 8px 0;
+  background-color: #ccc;
+  border-radius: 16px;
+}

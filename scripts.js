@@ -17,5 +17,12 @@ function handleKeyUp(event) {
 }
 
 const input = document.querySelector('input')
+const list = document.getElementById('list');
 input.addEventListener('keyup', debounceEvent(handleKeyUp, 750));
 input.focus();
+
+const li = document.createElement('li');
+li.innerText = 'hello world';
+li.className = 'list-item';
+
+list.append(li);
