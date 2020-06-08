@@ -13,16 +13,30 @@ const debounceEvent =
 
 function handleKeyUp(event) {
   filterUsers(event.target.value)
-  .then(users => console.log(users.map(user => user.name)));  
+  .then(users => {
+    const usersName = users.map(user => user.name);
+    cleanList();
+    usersName.forEach(addUserNameToList);
+  });
+}
+
+function addUserNameToList(userName) {
+  const listItem = createListItem(userName);
+  list.append(listItem);
+}
+
+function createListItem(userName) {
+  const li = document.createElement('li');
+  li.innerText = userName;
+  li.className = 'list-item';
+  return li;
+}
+
+function cleanList() {
+  list.innerHTML = '';
 }
 
 const input = document.querySelector('input')
 const list = document.getElementById('list');
 input.addEventListener('keyup', debounceEvent(handleKeyUp, 750));
 input.focus();
-
-const li = document.createElement('li');
-li.innerText = 'hello world';
-li.className = 'list-item';
-
-list.append(li);
